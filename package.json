@@ -1,0 +1,112 @@
+{
+  "name": "ggbview",
+  "displayName": "ggbview",
+  "description": "GeoGebra文件查看器插件",
+  "publisher": "neon-light",
+  "icon": "media/ggb-icon.png",
+  "version": "0.0.5",
+  "engines": {
+    "vscode": "^1.75.1"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+
+
+  "activationEvents": [
+    "onCustomEditor:ggbview.ggbView",
+    "onCommand:ggbview.open",
+    "onCommand:ggbview.pickFile",
+    "onCommand:ggbview.openFile"  
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "menus": {
+      "explorer/context": [
+        {
+          "title": "GGB: Pick File",
+          "command": "ggbview.pickFile",
+          "when": "resourceExtname == .ggb",
+          "group": "2"
+        },
+        {
+          "title": "GGB: Pick File",
+          "command": "ggbview.pickFile",
+          "when": "resourceExtname == .ggt",
+          "group": "2"
+        },
+        {
+          "title": "GGB: Open File",
+          "command": "ggbview.open",
+          "when": "resourceExtname == .ggb",
+          "group": "2"
+        },
+        {
+          "title": "GGB: Open File",
+          "command": "ggbview.open",
+          "when": "resourceExtname == .ggt",
+          "group": "2"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "ggbfilelist",
+          "name": "GeoGebra文件内容"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "ggbview.ggbView",
+        "displayName": "GeoGebra View",
+        "selector": [
+          {
+            "filenamePattern": "*.ggb"
+          },
+          {
+            "filenamePattern": "*.ggt"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "ggbview.open",
+        "title": "GGB:Open File",
+        "arguments": [
+          "${file}"
+        ]
+      },
+      {
+        "command": "ggbview.pickFile",
+        "title": "GGB:Pick File"
+      },
+      {
+        "command": "ggbview.openFile",
+        "title": "打开GGB包内文件",
+        "arguments": [
+          "${ggbUri}",
+          "${filePath}"
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.75.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "jszip": "^3.10.1"
+  },
+  "dependencies": {}
+}
