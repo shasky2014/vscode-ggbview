@@ -8,14 +8,13 @@ const log = vscode.window.createOutputChannel("GGB View");
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  vscode.window.showInformationMessage(
-    "1. 右键点击 `.ggb` 文件\n" +
-      "2. 选择 Open With \n" +
-      "3. 选择 Configure default editor for '*.ggb' files\n" +
-      "4. 选择 GGB View"
-  );
+  // vscode.window.showInformationMessage(
+  //   "1. 右键点击 `.ggb` 文件\n" +
+  //     "2. 选择 Open With \n" +
+  //     "3. 选择 Configure default editor for '*.ggb' files\n" +
+  //     "4. 选择 GGB View"
+  // );
   log.appendLine('Congratulations, your extension "ggbview" is now active!');
-
 
   const pickggb = vscode.commands.registerCommand("ggbview.pickFile", (uri) => {
     if (uri && (uri.fsPath.endsWith(".ggb") || uri.fsPath.endsWith(".ggt"))) {
@@ -27,7 +26,7 @@ function activate(context) {
 
   const opendefault = vscode.window.registerCustomEditorProvider(
     "ggbview.ggbView",
-    new GgbEditorProvider(context),
+    new GgbEditorProvider(context,log),
     {
       webviewOptions: {
         retainContextWhenHidden: true,

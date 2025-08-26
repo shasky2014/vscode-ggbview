@@ -20,10 +20,57 @@
     "onCustomEditor:ggbview.ggbView",
     "onCommand:ggbview.open",
     "onCommand:ggbview.pickFile",
-    "onCommand:ggbview.openFile"  
+    "onCommand:ggbview.openFile"
   ],
   "main": "./extension.js",
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "ggbview",
+      "properties": {
+        "ggbview.default.showToolBar": {
+          "markdownDescription": "set your ggb editor show Tool Bar or not.",
+          "type": "boolean",
+          "default": true,
+          "enum": [
+            false,
+            true
+          ]},
+        "ggbview.default.showMenuBar": {
+          "markdownDescription": "set your ggb editor show Tool Bar or not.",
+          "type": "boolean",
+          "default": true,
+          "enum": [
+            false,
+            true
+          ]},
+          "ggbview.default.showAlgebraInput": {
+            "markdownDescription": "set your ggb editor show Algebra Input or not.",
+            "type": "boolean",
+            "default": false,
+            "enum": [
+              false,
+              true
+            ]},
+            "ggbview.default.allowStyleBar": {
+              "markdownDescription": "set your ggb editor allow Style Bar or not.",
+              "type": "boolean",
+              "default": false,
+              "enum": [
+                false,
+                true
+              ]},
+              "ggbview.default.showToolBarHelp": {
+                "markdownDescription": "set your ggb editor showToolBarHelp or not.",
+                "type": "boolean",
+                "default": false,
+                "enum": [
+                  false,
+                  true
+                ]}
+              
+      }
+    },
     "menus": {
       "explorer/context": [
         {

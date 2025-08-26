@@ -1,5 +1,14 @@
 ## version 
 
+### 0.0.6
+- 增加扩展项可配置参数，来控制ggb页面是否显示工具栏和菜单等相关内容
+  - showToolBar 显示工具栏
+  - showMenuBar 显示菜单按钮
+  - showToolBarHelp 显示工具帮助信息弹窗
+  - allowStyleBar 允许样式栏
+  - showAlgebraInput 显示命令输入栏
+相关配置使用 new GGBApplet(parameters, true) 对应的参数列表，更多的配置有待进一步研究。
+
 ### 0.0.5
 - 新增提示信息，第一次使用 ggbview时，需要设置打开方式为 "GeoGebra View"，方便以后打开ggb文件
      
