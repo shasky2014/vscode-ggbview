@@ -11,8 +11,11 @@
   "categories": [
     "Programming Languages"
   ],
-
-
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shasky2014/vscode-ggbview.git"
+  },
+  "license": "MIT",
   "activationEvents": [
     "onCustomEditor:ggbview.ggbView",
     "onCommand:ggbview.open",
