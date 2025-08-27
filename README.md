@@ -1,12 +1,14 @@
 # GeoGebra Viewer (ggbview)
 
-一个用于在 VS Code 中查看 GeoGebra 文件（.ggb 和 .ggt）内容的扩展。
-建议初次使用时，设置为ggb文件的默认编辑器
+当前版本使用ggb官网的 https://www.geogebra.org/apps/deployggb.js 来解析ggb文件，所以无法在不能联网的终端中使用本插件。
+
+一个用于在 VS Code 中查看 GeoGebra 文件（.ggb 和 .ggt）内容的扩展。建议初次使用时，设置为ggb文件的默认编辑器。
+
 ```
-    右键 "*.ggb" -> 
-        open with. ->
-        config default editor for '*.ggb' -> 
-        GeoGebra View
+右键 "*.ggb" -> 
+    open with. ->
+    config default editor for '*.ggb' -> 
+    GeoGebra Viewer
 ```
 ![设置为默认](setasdefault.gif)
 
@@ -19,8 +21,8 @@ VS Code 的默认编辑器选择是用户级别的偏好设置，出于安全和
 
 ## 使用方法
 
-1. 在资源管理器中右键点击 .ggb 文件
-2. 选择 "GGB:Pick File" 命令
+1. 在vscode的资源管理器中单击 .ggb 文件，打开预览
+2. 右键点击文件，选择 "GGB:Pick File" 命令
 3. 在侧边栏的 "GeoGebra文件内容" 视图中浏览文件内容
 4. 点击文件项可直接在编辑器中打开
 
