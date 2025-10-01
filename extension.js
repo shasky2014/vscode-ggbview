@@ -1,19 +1,13 @@
 const vscode = require("vscode");
 
 const { GgbTreeDataProvider, openFile } = require("./ggbTreeDataProvider");
-const {GgbEditorProvider,getNonce} = require("./editorProvider");
+const {GgbEditorProvider} = require("./editorProvider");
 const log = vscode.window.createOutputChannel("GGB View");
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  // vscode.window.showInformationMessage(
-  //   "1. 右键点击 `.ggb` 文件\n" +
-  //     "2. 选择 Open With \n" +
-  //     "3. 选择 Configure default editor for '*.ggb' files\n" +
-  //     "4. 选择 GGB View"
-  // );
   log.appendLine('Congratulations, your extension "ggbview" is now active!');
 
   const pickggb = vscode.commands.registerCommand("ggbview.pickFile", (uri) => {
@@ -36,48 +30,11 @@ function activate(context) {
   context.subscriptions.push(opendefault);
 
   const opencmd = vscode.commands.registerCommand("ggbview.open", (uri) => {
-    const fileName = uri.path.split("/").pop();
-
-    const panel = vscode.window.createWebviewPanel(
-      "ggb-editor",
-      fileName,
-      vscode.ViewColumn.One,
-      {
-        enableScripts: true,
-        localResourceRoots: [
-          vscode.Uri.file(uri.fsPath.substring(0, uri.fsPath.lastIndexOf("/"))),
-        ],
-      }
-    );
-    const fileUri = panel.webview.asWebviewUri(uri);
-    panel.webview.html = `<!DOCTYPE html>
-	<html>
-	  <head>
-		<script
-		  type="text/javascript"
-		  src="https://www.geogebra.org/apps/deployggb.js"
-		></script>
-	  </head>
-	  <body>
-		<div id="ggbcontainer"></div>
-		<script type="text/javascript">
-		  var parameters = {
-			fileName: "${fileUri.toString()}",
-		  };
-		  console.log(parameters);
-		  var applet = new GGBApplet(parameters, true);
-		  console.log(applet);
-		  window.onload = function () {
-			applet.inject(ggbcontainer);
-		  };
-		</script>
-	  </body>
-	</html>`;
+    vscode.commands.executeCommand('vscode.openWith', uri, 'ggbview.ggbView');
   });
   context.subscriptions.push(opencmd);
 
   const treeDataProvider = new GgbTreeDataProvider();
-
   const explorer_tree = vscode.window.createTreeView("ggbfilelist", {
     treeDataProvider: treeDataProvider,
   });
