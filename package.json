@@ -4,7 +4,7 @@
   "description": "GeoGebra文件查看器插件",
   "publisher": "neon-light",
   "icon": "media/ggb-icon.png",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "engines": {
     "vscode": "^1.75.1"
   },
@@ -18,9 +18,7 @@
   "license": "MIT",
   "activationEvents": [
     "onCustomEditor:ggbview.ggbView",
-    "onCommand:ggbview.open",
-    "onCommand:ggbview.pickFile",
-    "onCommand:ggbview.openFile"
+    "onCommand:ggbview.open"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -31,7 +29,7 @@
         "ggbview.default.showToolBar": {
           "markdownDescription": "set your ggb editor show Tool Bar or not.",
           "type": "boolean",
-          "default": true,
+          "default": false,
           "enum": [
             false,
             true
@@ -39,7 +37,7 @@
         "ggbview.default.showMenuBar": {
           "markdownDescription": "set your ggb editor show Tool Bar or not.",
           "type": "boolean",
-          "default": true,
+          "default": false,
           "enum": [
             false,
             true
@@ -71,42 +69,6 @@
               
       }
     },
-    "menus": {
-      "explorer/context": [
-        {
-          "title": "GGB: Pick File",
-          "command": "ggbview.pickFile",
-          "when": "resourceExtname == .ggb",
-          "group": "2"
-        },
-        {
-          "title": "GGB: Pick File",
-          "command": "ggbview.pickFile",
-          "when": "resourceExtname == .ggt",
-          "group": "2"
-        },
-        {
-          "title": "GGB: Open File",
-          "command": "ggbview.open",
-          "when": "resourceExtname == .ggb",
-          "group": "2"
-        },
-        {
-          "title": "GGB: Open File",
-          "command": "ggbview.open",
-          "when": "resourceExtname == .ggt",
-          "group": "2"
-        }
-      ]
-    },
-    "views": {
-      "explorer": [
-        {
-          "id": "ggbfilelist",
-          "name": "GeoGebra文件内容"
-        }
-      ]
-    },
     "customEditors": [
       {
         "viewType": "ggbview.ggbView",
@@ -129,18 +91,6 @@
         "arguments": [
           "${file}"
         ]
-      },
-      {
-        "command": "ggbview.pickFile",
-        "title": "GGB:Pick File"
-      },
-      {
-        "command": "ggbview.openFile",
-        "title": "打开GGB包内文件",
-        "arguments": [
-          "${ggbUri}",
-          "${filePath}"
-        ]
       }
     ]
   },
@@ -151,12 +101,13 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
+    "@types/node": "^24.x",
     "@types/vscode": "^1.75.1",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
-    "eslint": "^9.25.1",
-    "jszip": "^3.10.1"
+    "eslint": "^9.39.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "eslint": "^9.39.2"
+  }
 }
